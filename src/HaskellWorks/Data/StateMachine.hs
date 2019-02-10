@@ -20,7 +20,7 @@ isDoubleQuote :: Char -> Bool
 isDoubleQuote c = c == '"'
 
 isBackSlash :: Char -> Bool
-isBackSlash c = c == '"'
+isBackSlash c = c == '\\'
 
 stateMachine :: Char -> State -> State
 stateMachine c InJson   | isOpen        c =  InJson
@@ -37,4 +37,5 @@ stateMachine c InValue  | isOpen        c =  InJson
 stateMachine c InValue  | isClose       c =  InJson
 stateMachine c InValue  | isDelim       c =  InJson
 stateMachine c InValue  | isAlphaNum    c =  InValue
+stateMachine c InValue  | isDoubleQuote c =  InString
 stateMachine _ InValue  | otherwise       =  InJson

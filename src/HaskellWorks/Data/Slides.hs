@@ -9,7 +9,6 @@ import Diagrams.Backend.SVG
 import Diagrams.Prelude
 import HaskellWorks.Data.StateMachine
 
-import qualified Data.Char        as C
 import qualified System.Directory as IO
 
 {-# ANN module ("HLint: ignore Reduce duplication"  :: String) #-}
@@ -23,20 +22,21 @@ transitionFor c =
   , stateMachine c InEscape
   )
 
+transitionDiagram :: Char -> (State, State, State, State) -> Diagram B
+transitionDiagram c (InJson  , InJson  , InString, InString) = transition1 [c]
+transitionDiagram c (InString, InString, InJson  , InString) = transition2 [c]
+transitionDiagram c (InValue , InValue , InString, InString) = transition3 [c]
+transitionDiagram c (InJson  , InJson  , InEscape, InString) = transition4 [c]
+transitionDiagram c _                                        = transition0 [c]
+
 selectTransition :: Char -> Diagram B
-selectTransition c | C.isSpace c  = transition1 [c]
-selectTransition c | c == '{'     = transition1 [c]
-selectTransition c | c == '['     = transition1 [c]
-selectTransition c | c == ']'     = transition1 [c]
-selectTransition c | c == '}'     = transition1 [c]
-selectTransition c | c == ','     = transition1 [c]
-selectTransition c | c == ':'     = transition1 [c]
-selectTransition c | c == '"'     = transition2 [c]
-selectTransition c | c == '\\'    = transition4 [c]
-selectTransition c                = transition3 [c]
+selectTransition c = transitionDiagram c (transitionFor c)
 
 myDiagram :: Diagram B
-myDiagram = hsep 0 (fmap selectTransition jsonText)
+myDiagram = enframe (hsep 0 (fmap selectTransition jsonText) # center)
+
+enframe :: Diagram B -> Diagram B
+enframe d = rect 80 60 <> d
 
 illustrateBézier
   :: Semigroup a
@@ -75,61 +75,61 @@ smSingleTransition a b = fromSegments
 
 transition0 :: String -> QDiagram B V2 Double Any
 transition0 label = mconcat
-  [ [ smSingleTransition 3 2 # lc black # lw veryThick
+  [ vrule 9 # lc silver # translateY 2
+  , vrule 9 # lc silver # translateY 2 # translateX 3
+  , [ smSingleTransition 3 3 # lc black # lw veryThick
     , smSingleTransition 2 2 # lc black # lw veryThick
-    , smSingleTransition 1 0 # lc black # lw veryThick
+    , smSingleTransition 1 1 # lc black # lw veryThick
     , smSingleTransition 0 0 # lc black # lw veryThick
     ] # mconcat # opacityGroup 0.5
-  , vrule 9 # lc silver # translateY 2
-  , vrule 9 # lc silver # translateY 2 # translateX 3
   , text label # translateX 1.5 # translateY (-1.5) # font "Consolas,monaco,monospace" # fc black
   ]
 
 transition1 :: String -> QDiagram B V2 Double Any
 transition1 label = mconcat
-  [ [ smSingleTransition 3 2 # lc green # lw veryThick
+  [ vrule 9 # lc silver # translateY 2
+  , vrule 9 # lc silver # translateY 2 # translateX 3
+  , [ smSingleTransition 3 2 # lc green # lw veryThick
     , smSingleTransition 2 2 # lc green # lw veryThick
     , smSingleTransition 1 0 # lc green # lw veryThick
     , smSingleTransition 0 0 # lc green # lw veryThick
     ] # mconcat # opacityGroup 0.5
-  , vrule 9 # lc silver # translateY 2
-  , vrule 9 # lc silver # translateY 2 # translateX 3
   , text label # translateX 1.5 # translateY (-1.5) # font "Consolas,monaco,monospace" # fc green
   ]
   
 transition2 :: String -> QDiagram B V2 Double Any
 transition2 label = mconcat
-  [ [ smSingleTransition 3 2 # lc orange # lw veryThick
+  [ vrule 9 # lc silver # translateY 2
+  , vrule 9 # lc silver # translateY 2 # translateX 3
+  , [ smSingleTransition 3 2 # lc orange # lw veryThick
     , smSingleTransition 2 0 # lc orange # lw veryThick
     , smSingleTransition 1 2 # lc orange # lw veryThick
     , smSingleTransition 0 2 # lc orange # lw veryThick
     ] # mconcat # opacityGroup 0.5 
-  , vrule 9 # lc silver # translateY 2
-  , vrule 9 # lc silver # translateY 2 # translateX 3
   , text label # translateX 1.5 # translateY (-1.5) # font "Consolas,monaco,monospace" # fc orange
   ]
 
 transition3 :: String -> QDiagram B V2 Double Any
 transition3 label = mconcat
-  [ [ smSingleTransition 3 2 # lc brown # lw veryThick
+  [ vrule 9 # lc silver # translateY 2
+  , vrule 9 # lc silver # translateY 2 # translateX 3
+  , [ smSingleTransition 3 2 # lc brown # lw veryThick
     , smSingleTransition 2 2 # lc brown # lw veryThick
     , smSingleTransition 1 1 # lc brown # lw veryThick
     , smSingleTransition 0 1 # lc brown # lw veryThick
     ] # mconcat # opacityGroup 0.5 
-  , vrule 9 # lc silver # translateY 2
-  , vrule 9 # lc silver # translateY 2 # translateX 3
   , text label # translateX 1.5 # translateY (-1.5) # font "Consolas,monaco,monospace" # fc brown
   ]
 
 transition4 :: String -> QDiagram B V2 Double Any
 transition4 label = mconcat
-  [ [ smSingleTransition 3 2 # lc blue # lw veryThick
+  [ vrule 9 # lc silver # translateY 2
+  , vrule 9 # lc silver # translateY 2 # translateX 3
+  , [ smSingleTransition 3 2 # lc blue # lw veryThick
     , smSingleTransition 2 3 # lc blue # lw veryThick
     , smSingleTransition 1 0 # lc blue # lw veryThick
     , smSingleTransition 0 0 # lc blue # lw veryThick
     ] # mconcat # opacityGroup 0.5 
-  , vrule 9 # lc silver # translateY 2
-  , vrule 9 # lc silver # translateY 2 # translateX 3
   , text label # translateX 1.5 # translateY (-1.5) # font "Consolas,monaco,monospace" # fc blue
   ]
 

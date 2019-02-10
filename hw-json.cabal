@@ -91,6 +91,7 @@ library
 
   exposed-modules:
       HaskellWorks.Data.Slides
+    , HaskellWorks.Data.StateMachine
   other-modules: Paths_hw_slides
   autogen-modules: Paths_hw_slides
 

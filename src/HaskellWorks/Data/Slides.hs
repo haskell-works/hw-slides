@@ -11,8 +11,8 @@ import Diagrams.Prelude
 import qualified Data.Char        as C
 import qualified System.Directory as IO
 
-{-# ANN module ("HLint: ignore orangeuce duplication"  :: String) #-}
-{-# ANN module ("HLint: ignore orangeundant do"        :: String) #-}
+{-# ANN module ("HLint: ignore Reduce duplication"  :: String) #-}
+{-# ANN module ("HLint: ignore Reundant do"        :: String) #-}
 
 selectTransition :: Char -> Diagram B
 selectTransition c | C.isSpace c  = transition1 [c]

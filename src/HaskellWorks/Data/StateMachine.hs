@@ -4,7 +4,7 @@ import Data.Char
 
 {-# ANN module ("HLint: ignore Redundant guard"  :: String) #-}
 
-data State = InJson | InString | InEscape | InValue
+data State = InJson | InValue | InString | InEscape
   deriving (Eq, Enum, Bounded, Show)
 
 isOpen :: Char -> Bool

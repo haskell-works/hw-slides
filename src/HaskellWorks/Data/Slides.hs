@@ -7,12 +7,21 @@ module HaskellWorks.Data.Slides where
 import Data.Typeable
 import Diagrams.Backend.SVG
 import Diagrams.Prelude
+import HaskellWorks.Data.StateMachine
 
 import qualified Data.Char        as C
 import qualified System.Directory as IO
 
 {-# ANN module ("HLint: ignore Reduce duplication"  :: String) #-}
 {-# ANN module ("HLint: ignore Reundant do"        :: String) #-}
+
+transitionFor :: Char -> (State, State, State, State)
+transitionFor c =
+  ( stateMachine c InJson
+  , stateMachine c InValue
+  , stateMachine c InString
+  , stateMachine c InEscape
+  )
 
 selectTransition :: Char -> Diagram B
 selectTransition c | C.isSpace c  = transition1 [c]

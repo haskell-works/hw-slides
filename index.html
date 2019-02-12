@@ -7,10 +7,26 @@
 		<title>reveal.js</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/white.css">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    
+    <style>
+      .reveal section img.seamless {
+        background: rgba(255, 0, 0, 0);
+        border: 0px;
+      }
+
+      .bad {
+        text-decoration: line-through;
+        color: red;
+      }
+
+      .good {
+        color: green;
+      }
+    </style>
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -32,28 +48,53 @@
           Haskell Library
         </section>
         <section id="goals">
-          <section>
-            <h2>Goals</h2>
-            <br><br>
+          <h2>Goals</h2>
+          <br><br>
 
-            <ul>
-              <li class="fragment fade-in">
-                Document navigation and queries
-              </li>
-              <li class="fragment fade-in">
-                Small memory footprint
-              </li>
-              <li class="fragment fade-in">
-                Fast performance
-              </li>
-            </ul>
+          <ul>
+            <li class="fragment fade-in" data-fragment-index="1">
+              Small memory footprint
+              <div>
+                <span class="fragment bad" data-fragment-index="4">Traditional DOM</span>
+                <span class="fragment good" data-fragment-index="6">
+                  <span>Succinct data structures</span>
+                </span>
+              </div>
+            </li>
+            <li class="fragment fade-in" data-fragment-index="2">
+              Document navigation and queries
+              <div>
+                <span class="fragment bad" data-fragment-index="5">Streaming</span>
+                <span class="fragment good" data-fragment-index="7">
+                  Cursors
+                </span>
+              </div>
+            </li>
+            <li class="fragment fade-in" data-fragment-index="3">
+              Fast performance
+              <div>
+                <span class="fragment bad" data-fragment-index="4">Traditional DOM</span>
+                <span class="fragment good" data-fragment-index="8">Laziness</span>
+                <span class="fragment good" data-fragment-index="9">& SIMD</span>
+              </div>
+            </li>
+          </ul>
+        </section>
+				<section>
+          <section>
+            Succinct Data Structures
           </section>
           <section>
-            haha
+            TODO
           </section>
         </section>
         <section>
-          \[(Q, Σ, δ, q_{0}, F)\]
+          <section>
+            \[(Q, Σ, δ, q_{0}, F)\]
+          </section>
+          <section>
+            <img class="seamless" src="output/hw-json/full-railroad.svg" height="400"/>
+          </section>
         </section>
 				<section>
           Slide 2

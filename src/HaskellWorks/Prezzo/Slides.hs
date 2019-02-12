@@ -4,10 +4,11 @@
 
 module HaskellWorks.Prezzo.Slides where
 
-import Data.Typeable
 import Diagrams.Backend.SVG
 import Diagrams.Prelude
+import HaskellWorks.Prezzo.Frame
 import HaskellWorks.Prezzo.StateMachine
+import HaskellWorks.Prezzo.Text
 
 import qualified System.Directory as IO
 
@@ -57,34 +58,6 @@ eachTransition = enframe $ vsep 1
           , text "InJson"
           ]
 
-enframe :: Diagram B -> Diagram B
-enframe d = rect 80 60 <> d
-
-illustrateBézier
-  :: Semigroup a
-  => TrailLike a
-  => Transformable a
-  => HasStyle a
-  => Typeable (N a)
-  => V a ~ V2
-  => V a (N a)
-  -> V a (N a)
-  -> V a (N a)
-  -> a
-illustrateBézier c1 c2 x2
-    =  endpt
-    <> endpt  # translate x2
-    <> ctrlpt # translate c1
-    <> ctrlpt # translate c2
-    <> l1
-    <> l2
-    <> fromSegments [bézier3 c1 c2 x2]
-  where dashed  = dashingN [0.03, 0.03] 0
-        endpt   = circle 0.05 # fc orange  # lw none
-        ctrlpt  = circle 0.05 # fc blue # lw none
-        l1      = fromOffsets [c1] # dashed
-        l2      = fromOffsets [x2 ^-^ c2] # translate c2 # dashed
-
 smSingleTransition :: Int -> Int -> QDiagram B V2 Double Any
 smSingleTransition a b = fromSegments
   [ bézier3
@@ -118,7 +91,7 @@ transition1 label = mconcat
     ] # mconcat # opacityGroup 0.5
   , text label # translateX 1.5 # translateY (-1.5) # font "Consolas,monaco,monospace" # fc green
   ]
-  
+
 transition2 :: String -> QDiagram B V2 Double Any
 transition2 label = mconcat
   [ vrule 9 # lc silver # translateY 2
@@ -127,7 +100,7 @@ transition2 label = mconcat
     , smSingleTransition 2 0 # lc orange
     , smSingleTransition 1 2 # lc orange
     , smSingleTransition 0 2 # lc orange
-    ] # mconcat # opacityGroup 0.5 
+    ] # mconcat # opacityGroup 0.5
   , text label # translateX 1.5 # translateY (-1.5) # font "Consolas,monaco,monospace" # fc orange
   ]
 
@@ -139,7 +112,7 @@ transition3 label = mconcat
     , smSingleTransition 2 2 # lc brown
     , smSingleTransition 1 1 # lc brown
     , smSingleTransition 0 1 # lc brown
-    ] # mconcat # opacityGroup 0.5 
+    ] # mconcat # opacityGroup 0.5
   , text label # translateX 1.5 # translateY (-1.5) # font "Consolas,monaco,monospace" # fc brown
   ]
 
@@ -151,15 +124,20 @@ transition4 label = mconcat
     , smSingleTransition 2 3 # lc blue
     , smSingleTransition 1 0 # lc blue
     , smSingleTransition 0 0 # lc blue
-    ] # mconcat # opacityGroup 0.5 
+    ] # mconcat # opacityGroup 0.5
   , text label # translateX 1.5 # translateY (-1.5) # font "Consolas,monaco,monospace" # fc blue
   ]
 
 jsonText :: String
 jsonText = "{\"key\": [12, \"[\\\"a\\\"]\"]}"
 
+diaRank1 :: Diagram B
+diaRank1 = rect 16 12 # lc white <> body # font "Consolas,monaco,monospace"
+  where body = highlightText "abc" ""
+
 run :: IO ()
 run = do
   IO.createDirectoryIfMissing True "output/hw-json"
+  renderSVG "output/hw-json/rank-1.svg" (mkWidth 1024) diaRank1
   renderSVG "output/hw-json/full-railroad.svg" (mkWidth 1024) fullRailroadDiagram
   renderSVG "output/hw-json/each-transition.svg" (mkWidth 1024) eachTransition

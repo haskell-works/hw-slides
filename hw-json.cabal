@@ -90,8 +90,8 @@ library
   ghc-options: -O2 -msse4.2
 
   exposed-modules:
-      HaskellWorks.Data.Slides
-    , HaskellWorks.Data.StateMachine
+      HaskellWorks.Prezzo.Slides
+    , HaskellWorks.Prezzo.StateMachine
   other-modules: Paths_hw_slides
   autogen-modules: Paths_hw_slides
 

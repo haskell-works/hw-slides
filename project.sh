@@ -17,7 +17,10 @@ case "$cmd" in
 
   build)
     cabal new-build all -j8 \
-      --disable-tests --disable-benchmarks \
+      --disable-tests --disable-benchmarks --disable-documentation \
+      $CABAL_FLAGS "$@"
+    cabal new-run hw-slides run \
+      --disable-tests --disable-benchmarks --disable-documentation \
       $CABAL_FLAGS "$@"
     ;;
   
@@ -37,6 +40,11 @@ case "$cmd" in
 
   repl)
     cabal new-repl \
+      $CABAL_FLAGS "$@"
+    ;;
+
+  run)
+    cabal new-run --disable-documentation hw-slides run \
       $CABAL_FLAGS "$@"
     ;;
 

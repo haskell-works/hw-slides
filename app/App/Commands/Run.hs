@@ -5,8 +5,8 @@ module App.Commands.Run
   ) where
 
 import App.Commands.Types
-import HaskellWorks.Data.Slides
-import Options.Applicative      hiding (columns)
+import HaskellWorks.Prezzo.Slides
+import Options.Applicative        hiding (columns)
 
 {-# ANN module ("HLint: ignore Reduce duplication"  :: String) #-}
 {-# ANN module ("HLint: ignore Redundant do"        :: String) #-}

@@ -1,4 +1,4 @@
-module HaskellWorks.Data.StateMachine where
+module HaskellWorks.Prezzo.StateMachine where
 
 import Data.Char
 

@@ -32,3 +32,5 @@ cabal.sandbox.config
 /cabal.project.local
 
 *.svg
+
+/node_modules

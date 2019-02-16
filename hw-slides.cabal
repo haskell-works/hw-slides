@@ -37,6 +37,7 @@ common array                { build-depends: array                >= 0.5        
 common attoparsec           { build-depends: attoparsec           >= 0.13       && < 0.14   }
 common bits-extra           { build-depends: bits-extra           >= 0.0.1      && < 0.1    }
 common bytestring           { build-depends: bytestring           >= 0.10.6     && < 0.11   }
+common containers           { build-depends: containers           >= 0.6.0.1    && < 0.7    }
 common criterion            { build-depends: criterion            >= 1.4        && < 1.6    }
 common diagrams             { build-depends: diagrams             >= 1.4        && < 1.5    }
 common diagrams-contrib     { build-depends: diagrams-contrib                               }
@@ -75,6 +76,7 @@ library
           , attoparsec
           , bits-extra
           , bytestring
+          , containers
           , diagrams
           , diagrams-contrib
           , diagrams-core

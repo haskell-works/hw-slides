@@ -31,7 +31,6 @@ cabal.sandbox.config
 .ghc.environment.*
 /cabal.project.local
 
-*.svg
 .idea/
 *.iml
 *.iws
@@ -46,4 +45,4 @@ package-lock.json
 .sass-cache
 css/reveal.min.css
 js/reveal.min.js
-
+output

@@ -35,10 +35,10 @@
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
-    </script>
-		<script src="lib/js/svg.js"></script>
-    <script src="lib/js/slides.js"></script>
-	</head>
+		</script>
+
+  <script src="lib/js/svg.js"></script>
+  </head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
@@ -99,6 +99,8 @@
             <br><br>
             
             <img class="seamless" src="output/hw-json/rank-1.svg" height="400"/>
+
+            
           </section>
         </section>
         <section>
@@ -115,19 +117,16 @@
 				<section>
           Slide 3
 
-          xxx
-          <img class="seamless" src="images/drawing.svg" height="400"/>
-          xxx
+          <div id="drawing"></div>
 
-          <!-- <script>
+          <script>
             SVG.on(document, 'DOMContentLoaded', function() {
               var draw = SVG('drawing').size(300, 300)
               var nested = draw
               var rect = nested.rect(100, 100).attr({ fill: '#606' })
               nested.rect(50, 50).attr({fill: '#088'})
             })
-          </script> -->
-
+          </script>
         </section>
 			</div>
 		</div>

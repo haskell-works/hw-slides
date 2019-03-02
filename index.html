@@ -121,7 +121,7 @@
 
           <script>
             SVG.on(document, 'DOMContentLoaded', function() {
-              var draw = SVG('drawing').size(300, 300)
+              var draw = SVG('drawing').size(1000, 1000)
               var nested = draw
               var rect = nested.rect(100, 100).attr({ fill: '#606' })
 
@@ -136,6 +136,17 @@
               path.plot('M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80').fill('none').stroke({ width: 1 })
 
               path.animate(2000).plot('M10 80 C 40 150 65 150 95 80 S 150 10, 180 200').loop(true, true)
+
+              var text = draw.text('This is just the start, ')
+
+              text.build(true)  // enables build mode
+
+              var tspan = text.tspan('something pink in the middle ').fill('#00ff97')
+              text.plain('and again boring at the end.')
+
+              text.build(false) // disables build mode
+
+              tspan.animate('2s').fill('#f06')
 
             })
           </script>

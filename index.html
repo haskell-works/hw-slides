@@ -164,7 +164,7 @@
         </section>
         <section>
             Slide 4
-  
+
             <div id="drawing-4"></div>
   
             <script>
@@ -185,6 +185,12 @@
             <style>
               #drawing-4 .bitOne {
                 fill: green;
+                transition: all 0.5s ease-in-out;
+              }
+              #drawing-4:hover .bitOne {
+                fill: red;
+                opacity: 0;
+                width: 0;
               }
               #drawing-4 .bitZero {
                 fill: blue;

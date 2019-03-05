@@ -38,6 +38,7 @@
 		</script>
 
   <script src="lib/js/svg.js"></script>
+  <script src="lib/js/svg-extension.js"></script>
   </head>
 	<body>
 		<div class="reveal">
@@ -167,36 +168,6 @@
             <div id="drawing-4"></div>
   
             <script>
-              SVG.extend(SVG.Element, {
-                with: function(f) {
-                  f(this)
-                  return this
-                }
-              })
-
-              SVG.extend(SVG.Text, SVG.Tspan, {
-                nl: function() {
-                  return this.tspan('​').newLine()
-                },
-                tspans: function(text, keys, styles) {
-                  if (styles === undefined) {
-                    styles = {}
-                  }
-                  
-                  this.nl()
-                  var i = 0;
-                  for (; i < text.length; ++i) {
-                    this.tspan(text[i]).with(e => {
-                      if (keys[i] in styles) {
-                        e.addClass(styles[keys[i]])
-                      }
-                    })
-
-                  }
-                  return this
-                }
-              })
-
               SVG.on(document, 'DOMContentLoaded', function() {
                 var draw = SVG('drawing-4').size(1200, 600)
 

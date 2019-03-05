@@ -121,9 +121,9 @@
 
           <script>
             SVG.on(document, 'DOMContentLoaded', function() {
-              var draw = SVG('drawing').size(1000, 1000)
+              var draw = SVG('drawing').size(1000, 600)
               var nested = draw
-              var rect = nested.rect(100, 100).attr({ fill: '#606' })
+              var rect = nested.rect(1000, 600).attr({ fill: '#eee' })
 
               nested.rect(50, 50).attr({fill: '#088'})
               draw.rect(100,100).animate().fill('#f03').move(100,100)
@@ -137,7 +137,7 @@
 
               path.animate(2000).plot('M10 80 C 40 150 65 150 95 80 S 150 10, 180 200').loop(true, true)
 
-              var text = draw.text('This is just the start, ')
+              var text = draw.text('This is just the start, ').size(10)
 
               text.build(true)  // enables build mode
 
@@ -148,9 +148,44 @@
 
               tspan.animate('2s').fill('#f06')
 
+              var text = draw.text(function(add) {
+                add.tspan('').newLine()
+                add.tspan('Lorem ipsum dolor sit amet ').newLine()
+                add.tspan('consectetur').fill('#f06')
+                add.tspan('.')
+                add.tspan('Cras sodales imperdiet auctor.').newLine().dx(20)
+                add.tspan('Nunc ultrices lectus at erat').newLine()
+                add.tspan('dictum pharetra elementum ante').newLine()
+              })
+
             })
           </script>
         </section>
+        <section>
+            Slide 4
+  
+            <div id="drawing-4"></div>
+  
+            <script>
+              SVG.extend(SVG.Text, {
+                tspans: function(text, keys, styles) {
+                  this.tspan(text)
+                  return this.tspan(keys)
+                }
+              })
+
+              SVG.on(document, 'DOMContentLoaded', function() {
+                var draw = SVG('drawing-4').size(1000, 600)
+
+                var text = draw.text(function(add) {
+                  add.tspan('').newLine()
+                  add.tspans(
+                    '101000000010000000100000010001000000100000',
+                    'ababbbbbbbabbbbbbbabbbbbbabbbabbbbbbabbbbb').newLine()
+                })
+              })
+            </script>
+          </section>
 			</div>
 		</div>
 

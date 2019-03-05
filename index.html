@@ -167,18 +167,31 @@
             <div id="drawing-4"></div>
   
             <script>
-              SVG.extend(SVG.Text, {
+              SVG.extend(SVG.Text, SVG.Tspan, {
+                nl: function() {
+                  return this.tspan('​').newLine()
+                },
                 tspans: function(text, keys, styles) {
-                  this.tspan(text)
-                  return this.tspan(keys)
+                  var e = this;
+                  
+                  this.nl()
+                  this.tspan(text).nl()
+                  this.tspan('==').nl()
+                  var i = 0;
+                  for (; i < text.length; ++i) {
+                    this.tspan(i + ":" + text[i] + ":" + i + ",")
+                  }
+                  this.tspan('').nl()
+                  this.tspan(keys)
+                  return this
                 }
               })
 
               SVG.on(document, 'DOMContentLoaded', function() {
-                var draw = SVG('drawing-4').size(1000, 600)
+                var draw = SVG('drawing-4').size(1200, 600)
 
                 var text = draw.text(function(add) {
-                  add.tspan('').newLine()
+                  add.leading(2.5)
                   add.tspans(
                     '101000000010000000100000010001000000100000',
                     'ababbbbbbbabbbbbbbabbbbbbabbbabbbbbbabbbbb').newLine()

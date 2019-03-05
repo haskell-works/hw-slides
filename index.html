@@ -167,22 +167,32 @@
             <div id="drawing-4"></div>
   
             <script>
+              SVG.extend(SVG.Element, {
+                with: function(f) {
+                  f(this)
+                  return this
+                }
+              })
+
               SVG.extend(SVG.Text, SVG.Tspan, {
                 nl: function() {
                   return this.tspan('​').newLine()
                 },
                 tspans: function(text, keys, styles) {
-                  var e = this;
+                  if (styles === undefined) {
+                    styles = {}
+                  }
                   
                   this.nl()
-                  this.tspan(text).nl()
-                  this.tspan('==').nl()
                   var i = 0;
                   for (; i < text.length; ++i) {
-                    this.tspan(i + ":" + text[i] + ":" + i + ",")
+                    this.tspan(text[i]).with(e => {
+                      if (keys[i] in styles) {
+                        e.addClass(styles[keys[i]])
+                      }
+                    })
+
                   }
-                  this.tspan('').nl()
-                  this.tspan(keys)
                   return this
                 }
               })
@@ -194,10 +204,21 @@
                   add.leading(2.5)
                   add.tspans(
                     '101000000010000000100000010001000000100000',
-                    'ababbbbbbbabbbbbbbabbbbbbabbbabbbbbbabbbbb').newLine()
+                    '101000000010000000100000010001000000100000',
+                    { '1': 'bitOne'
+                    , '0': 'bitZero'
+                    }).nl()
                 })
               })
             </script>
+            <style>
+              #drawing-4 .bitOne {
+                fill: green;
+              }
+              #drawing-4 .bitZero {
+                fill: blue;
+              }
+            </style>
           </section>
 			</div>
 		</div>

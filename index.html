@@ -37,6 +37,7 @@
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 
+  <script src="lib/js/zepto.min.js"></script>
   <script src="lib/js/svg.js"></script>
   <script src="lib/js/svg-extension.js"></script>
   </head>
@@ -97,11 +98,45 @@
           </section>
           <section>
             Rank
-            <br><br>
-            
-            <img class="seamless" src="output/hw-json/rank-1.svg" height="400"/>
 
-            
+            <div id="yf2hlp8"></div>
+  
+            <script>
+              SVG.on(document, 'DOMContentLoaded', function() {
+                var draw = SVG('yf2hlp8').size(1200, 600)
+
+                var text = draw.text(function(add) {
+                  add.leading(2.5)
+                  add.tspans(
+                    '{"abc": [12, null, false, "```""]}'.replace(/`/g, '\\'),
+                    '1100000011000100000100000010000000',
+                    { '1': 'bitOne'
+                    , '0': 'bitZero'
+                    }).nl()
+                })
+
+                var originalBitZeroDxs = new Array()
+
+                $('#yf2hlp8 .bitZero').each(function() {
+                  originalBitZeroDxs.push(this.instance.getBoundingClientRect())
+                })
+              })
+            </script>
+            <style>
+              #yf2hlp8 text {
+                font-family: consolas, monospace;
+              }
+              #yf2hlp8 .bitOne {
+                fill: green;
+                transition: all 0.5s ease-in-out;
+              }
+              #yf2hlp8:hover .bitOne {
+                fill: red;
+              }
+              #yf2hlp8 .bitZero {
+                fill: blue;
+              }
+            </style>
           </section>
         </section>
         <section>
@@ -180,6 +215,12 @@
                     , '0': 'bitZero'
                     }).nl()
                 })
+
+                var originalBitZeroDxs = new Array()
+
+                $('#drawing-4 .bitZero').each(function() {
+                  originalBitZeroDxs.push(this.instance.getBoundingClientRect())
+                })
               })
             </script>
             <style>
@@ -189,7 +230,7 @@
               }
               #drawing-4:hover .bitOne {
                 fill: red;
-                opacity: 0;
+                /* display: none; */
                 width: 0;
               }
               #drawing-4 .bitZero {

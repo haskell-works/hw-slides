@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <svg id="drawing" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" >
+  <text xmlns="http://www.w3.org/2000/svg" id="SvgjsText1007" font-family="Helvetica, Arial, sans-serif"><tspan id="SvgjsTspan1008" dy="20.8" x="0">hi</tspan></text>
   <script type="text/javascript" xlink:href="https://haskell-works.github.io/hw-slides/lib/js/svg.js"></script>
+  <script type="text/javascript" xlink:href="../lib/js/svg-extension.js"></script>
   <script type="text/javascript">
     <![CDATA[
       var draw = SVG('drawing')
       draw.rect(100,100).animate().fill('#f03').move(100,100)
+      draw.text("hello")
+      draw.text("hello")
+      var text = draw.text(function(add) {
+        add.tspans(
+          '101000000010000000100000010001000000100000',
+          '101000000010000000100000010001000000100000',
+          { '1': 'bitOne'
+          , '0': 'bitZero'
+          }).nl()
+      })
     ]]>
   </script>
 </svg>
-

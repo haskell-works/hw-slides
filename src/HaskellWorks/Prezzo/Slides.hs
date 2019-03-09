@@ -133,7 +133,7 @@ jsonText = "{\"key\": [12, \"[\\\"a\\\"]\"]}"
 
 diaRank1 :: Diagram B
 diaRank1 = rect 16 12 # lc white <> body # font "Consolas,monaco,monospace"
-  where body = highlightText "abc" ""
+  where body = highlightText "abc" "" []
 
 run :: IO ()
 run = do

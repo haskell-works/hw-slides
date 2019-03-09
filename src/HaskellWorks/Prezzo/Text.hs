@@ -22,7 +22,7 @@ text' d s = strokeP (SF.textSVG' (SF.TextOpts lin2 SF.INSIDE_H SF.KERN False d d
 example :: Diagram B
 example = text' 1 "Hello" # fc blue ||| text' 1 "world" # fc green
 
-highlightText :: String -> String -> [Char -> DiagramB -> Diagram B] -> Diagram B
+highlightText :: String -> String -> [Char -> Diagram B -> Diagram B] -> Diagram B
 highlightText s selection styles = hsep 0 (fmap char s) # center
 
 char :: Char -> Diagram B

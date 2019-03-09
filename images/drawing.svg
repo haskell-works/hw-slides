@@ -1,22 +1,21 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<svg id="drawing" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" >
-  <text xmlns="http://www.w3.org/2000/svg" id="SvgjsText1007" font-family="Helvetica, Arial, sans-serif"><tspan id="SvgjsTspan1008" dy="20.8" x="0">hi</tspan></text>
-  <script type="text/javascript" xlink:href="https://haskell-works.github.io/hw-slides/lib/js/svg.js"></script>
-  <script type="text/javascript" xlink:href="../lib/js/svg-extension.js"></script>
-  <script type="text/javascript">
-    <![CDATA[
-      var draw = SVG('drawing')
-      draw.rect(100,100).animate().fill('#f03').move(100,100)
-      draw.text("hello")
-      draw.text("hello")
-      var text = draw.text(function(add) {
-        add.tspans(
-          '101000000010000000100000010001000000100000',
-          '101000000010000000100000010001000000100000',
-          { '1': 'bitOne'
-          , '0': 'bitZero'
-          }).nl()
-      })
-    ]]>
-  </script>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080">
+  <rect style="fill: #ffffff" width="1920" height="1080">
+    <text
+      xml:space="preserve"
+      style="fill: #000000; font-family: [object Object]; font-size: 40px; font-style: normal; font-weight: normal; stroke: none; -inkscape-font-specification: Sathu; fill-opacity: 1; font-stretch: normal; font-variant: normal; letter-spacing: 0px; line-height: 1.25; word-spacing: 0px"
+      x="368"
+      y="267.3"
+      id="text20">
+      <tspan
+        sodipodi:role="line"
+        id="tspan18"
+        x="367.97827"
+        y="267.29984"
+        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'PT Mono';-inkscape-font-specification:'PT Mono'">xxxxxxxx</tspan>
+    </text>
+  </rect>
+    <text fill="#0000ff" x="926.1" y="544.7">
+        Hello world
+    </text>
 </svg>

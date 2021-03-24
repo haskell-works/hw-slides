@@ -46,7 +46,7 @@ common diagrams-lib         { build-depends: diagrams-lib                       
 common diagrams-svg         { build-depends: diagrams-svg                                   }
 common directory            { build-depends: directory            >= 1.3        && < 1.4    }
 common dlist                { build-depends: dlist                >= 0.8        && < 0.9    }
-common generic-lens         { build-depends: generic-lens         >= 1.2        && < 2.1    }
+common generic-lens         { build-depends: generic-lens         >= 1.2        && < 2.2    }
 common hedgehog             { build-depends: hedgehog             >= 0.5        && < 0.7    }
 common hspec                { build-depends: hspec                >= 2.4        && < 3      }
 common lens                 { build-depends: lens                 >= 4          && < 5      }
